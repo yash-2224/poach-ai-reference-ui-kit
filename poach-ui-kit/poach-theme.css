@@ -1,0 +1,729 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * Fonts (Satoshi + General Sans from Fontshare) are loaded via <link> in src/routes/__root.tsx.
+ */
+@import "tailwindcss" source(none);
+@source "../src"; /* point this at your source folder */
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Poach AI design system — "Porcelain & Royal Blue"
+ * Light porcelain canvas, white engraved surfaces, a royal-blue header band,
+ * graphite as the only dark accent (never glowing), liquid glass for floating UI.
+ */
+
+@theme inline {
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "General Sans", "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 22px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
+  --color-band-muted: var(--band-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-engraved: var(--engraved);
+  --shadow-float: var(--float);
+  --shadow-soft: var(--soft);
+
+  --animate-rise: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+  --animate-breathe: breathe 2.4s ease-in-out infinite;
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(0.975 0.004 260);
+  --foreground: oklch(0.23 0.018 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.23 0.018 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.018 265);
+
+  --primary: oklch(0.49 0.17 262);
+  --primary-foreground: oklch(0.99 0.003 260);
+  --primary-soft: oklch(0.95 0.028 262);
+
+  --secondary: oklch(0.958 0.006 260);
+  --secondary-foreground: oklch(0.3 0.02 265);
+  --muted: oklch(0.962 0.005 260);
+  --muted-foreground: oklch(0.53 0.018 262);
+  --accent: oklch(0.955 0.02 262);
+  --accent-foreground: oklch(0.36 0.12 263);
+
+  --destructive: oklch(0.6 0.19 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --destructive-soft: oklch(0.96 0.025 25);
+  --success: oklch(0.6 0.12 158);
+  --success-foreground: oklch(0.35 0.08 158);
+  --success-soft: oklch(0.955 0.035 158);
+  --warning: oklch(0.74 0.14 72);
+  --warning-foreground: oklch(0.42 0.09 60);
+  --warning-soft: oklch(0.965 0.04 85);
+  --info: oklch(0.64 0.11 232);
+  --info-soft: oklch(0.955 0.025 232);
+
+  /* Graphite: the only dark tone, used sparingly for primary CTAs. Never glows. */
+  --ink: oklch(0.27 0.012 265);
+  --ink-foreground: oklch(0.985 0.002 260);
+
+  /* Royal-blue header band */
+  --band: oklch(0.4 0.15 263);
+  --band-2: oklch(0.45 0.16 261);
+  --band-foreground: oklch(0.985 0.005 260);
+  --band-muted: oklch(0.85 0.04 262);
+
+  --border: oklch(0.915 0.006 260);
+  --border-strong: oklch(0.86 0.01 260);
+  --input: oklch(0.9 0.008 260);
+  --ring: oklch(0.6 0.13 262);
+
+  --chart-1: oklch(0.49 0.17 262);
+  --chart-2: oklch(0.7 0.11 240);
+  --chart-3: oklch(0.82 0.06 250);
+  --chart-4: oklch(0.68 0.11 165);
+  --chart-5: oklch(0.78 0.12 80);
+
+  --sidebar: oklch(0.975 0.004 260);
+  --sidebar-foreground: oklch(0.32 0.018 265);
+  --sidebar-primary: oklch(0.49 0.17 262);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(1 0 0);
+  --sidebar-accent-foreground: oklch(0.23 0.018 265);
+  --sidebar-border: oklch(0.915 0.006 260);
+  --sidebar-ring: oklch(0.6 0.13 262);
+
+  /* Engraved = soft outer hairline + inner top highlight + gentle inner bottom shade */
+  --engraved:
+    0 0 0 1px oklch(0.23 0.02 265 / 0.07), 0 1px 2px oklch(0.23 0.02 265 / 0.05),
+    inset 0 1px 0 oklch(1 0 0 / 0.9), inset 0 -1px 0 oklch(0.23 0.02 265 / 0.035);
+  --soft: 0 1px 2px oklch(0.23 0.02 265 / 0.04), 0 8px 24px -12px oklch(0.23 0.02 265 / 0.1);
+  --float:
+    0 0 0 1px oklch(0.23 0.02 265 / 0.06), 0 2px 4px oklch(0.23 0.02 265 / 0.04),
+    0 24px 48px -16px oklch(0.23 0.03 265 / 0.18);
+
+  /* Theme-aware glass + highlight values (redefined in .dark) */
+  --hi: oklch(1 0 0 / 0.9);
+  --glass-top: oklch(1 0 0 / 0.72);
+  --glass-bottom: oklch(1 0 0 / 0.5);
+  --glass-edge: oklch(1 0 0 / 0.55);
+  --glass-solid-top: oklch(1 0 0 / 0.86);
+  --glass-solid-bottom: oklch(0.995 0.003 260 / 0.8);
+  --surface-soft-bg: oklch(1 0 0 / 0.7);
+  --hairline: oklch(0.23 0.02 265 / 0.07);
+  --tab-pill:
+    0 0 0 1px oklch(0.23 0.02 265 / 0.07), 0 1px 3px oklch(0.23 0.02 265 / 0.1), inset 0 1px 0 oklch(1 0 0);
+  --ink-ring: oklch(0.2 0.01 265);
+  --band-edge: oklch(0.3 0.12 263);
+
+  --gradient-band: linear-gradient(180deg, var(--band-2) 0%, var(--band) 100%);
+  --gradient-ink: linear-gradient(180deg, oklch(0.34 0.012 265) 0%, oklch(0.25 0.012 265) 100%);
+  --gradient-primary: linear-gradient(180deg, oklch(0.54 0.17 262) 0%, oklch(0.47 0.17 263) 100%);
+  --gradient-aurora:
+    radial-gradient(60% 50% at 20% 10%, oklch(0.86 0.08 262 / 0.9) 0%, transparent 60%),
+    radial-gradient(50% 45% at 85% 20%, oklch(0.88 0.07 300 / 0.7) 0%, transparent 60%),
+    radial-gradient(55% 50% at 60% 90%, oklch(0.9 0.06 220 / 0.8) 0%, transparent 65%),
+    linear-gradient(180deg, oklch(0.97 0.012 262) 0%, oklch(0.975 0.004 260) 100%);
+}
+
+/*
+ * Dark theme — "Graphite & Royal Blue". Same structure, deep blue-graphite
+ * canvas, slightly lifted cards, softer blue. Still no neon glow anywhere.
+ */
+.dark {
+  --background: oklch(0.165 0.012 265);
+  --foreground: oklch(0.95 0.005 260);
+  --card: oklch(0.205 0.014 265);
+  --card-foreground: oklch(0.95 0.005 260);
+  --popover: oklch(0.225 0.015 265);
+  --popover-foreground: oklch(0.95 0.005 260);
+
+  --primary: oklch(0.64 0.15 262);
+  --primary-foreground: oklch(0.99 0.003 260);
+  --primary-soft: oklch(0.29 0.06 263);
+
+  --secondary: oklch(0.25 0.014 265);
+  --secondary-foreground: oklch(0.86 0.01 260);
+  --muted: oklch(0.245 0.014 265);
+  --muted-foreground: oklch(0.7 0.016 262);
+  --accent: oklch(0.28 0.05 263);
+  --accent-foreground: oklch(0.86 0.08 262);
+
+  --destructive: oklch(0.68 0.17 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --destructive-soft: oklch(0.29 0.06 25);
+  --success: oklch(0.72 0.13 158);
+  --success-foreground: oklch(0.84 0.1 158);
+  --success-soft: oklch(0.28 0.05 158);
+  --warning: oklch(0.8 0.13 78);
+  --warning-foreground: oklch(0.86 0.11 82);
+  --warning-soft: oklch(0.3 0.05 75);
+  --info: oklch(0.74 0.1 232);
+  --info-soft: oklch(0.28 0.045 232);
+
+  /* In dark mode the "ink" CTA flips to porcelain so it stays the strongest button. */
+  --ink: oklch(0.93 0.006 260);
+  --ink-foreground: oklch(0.2 0.012 265);
+
+  --band: oklch(0.3 0.11 264);
+  --band-2: oklch(0.345 0.12 262);
+  --band-foreground: oklch(0.97 0.005 260);
+  --band-muted: oklch(0.8 0.04 262);
+
+  --border: oklch(1 0 0 / 0.085);
+  --border-strong: oklch(1 0 0 / 0.16);
+  --input: oklch(1 0 0 / 0.12);
+  --ring: oklch(0.66 0.13 262);
+
+  --chart-1: oklch(0.66 0.15 262);
+  --chart-2: oklch(0.72 0.1 238);
+  --chart-3: oklch(0.5 0.05 255);
+  --chart-4: oklch(0.72 0.11 165);
+  --chart-5: oklch(0.8 0.12 80);
+
+  --sidebar: oklch(0.165 0.012 265);
+  --sidebar-foreground: oklch(0.82 0.012 262);
+  --sidebar-primary: oklch(0.64 0.15 262);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.225 0.015 265);
+  --sidebar-accent-foreground: oklch(0.95 0.005 260);
+  --sidebar-border: oklch(1 0 0 / 0.07);
+  --sidebar-ring: oklch(0.66 0.13 262);
+
+  --engraved:
+    0 0 0 1px oklch(1 0 0 / 0.07), 0 1px 2px oklch(0 0 0 / 0.35),
+    inset 0 1px 0 oklch(1 0 0 / 0.05), inset 0 -1px 0 oklch(0 0 0 / 0.2);
+  --soft: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px -12px oklch(0 0 0 / 0.5);
+  --float:
+    0 0 0 1px oklch(1 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.3),
+    0 24px 48px -16px oklch(0 0 0 / 0.6);
+
+  --hi: oklch(1 0 0 / 0.06);
+  --glass-top: oklch(0.24 0.015 265 / 0.74);
+  --glass-bottom: oklch(0.2 0.014 265 / 0.6);
+  --glass-edge: oklch(1 0 0 / 0.08);
+  --glass-solid-top: oklch(0.225 0.015 265 / 0.9);
+  --glass-solid-bottom: oklch(0.2 0.014 265 / 0.86);
+  --surface-soft-bg: oklch(0.205 0.014 265 / 0.7);
+  --hairline: oklch(1 0 0 / 0.08);
+  --tab-pill: 0 0 0 1px oklch(1 0 0 / 0.08), 0 1px 3px oklch(0 0 0 / 0.4), inset 0 1px 0 oklch(1 0 0 / 0.06);
+  --ink-ring: oklch(0.8 0.01 260);
+  --band-edge: oklch(0.22 0.08 264);
+
+  --gradient-ink: linear-gradient(180deg, oklch(0.97 0.004 260) 0%, oklch(0.9 0.008 260) 100%);
+  --gradient-primary: linear-gradient(180deg, oklch(0.6 0.16 262) 0%, oklch(0.52 0.16 263) 100%);
+  --gradient-aurora:
+    radial-gradient(55% 45% at 18% 8%, oklch(0.3 0.05 262 / 0.45) 0%, transparent 60%),
+    radial-gradient(45% 40% at 88% 18%, oklch(0.27 0.03 280 / 0.3) 0%, transparent 60%),
+    linear-gradient(180deg, oklch(0.2 0.012 264) 0%, oklch(0.175 0.01 265) 100%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    line-height: 1.6;
+    letter-spacing: 0.012em;
+    font-feature-settings: "ss01", "ss02", "tnum" 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.012em;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background: oklch(0.49 0.17 262 / 0.18);
+  }
+
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ---------- Surfaces ---------- */
+
+@utility surface {
+  background: var(--color-card);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--engraved);
+}
+
+@utility surface-soft {
+  background: var(--surface-soft-bg);
+  border-radius: var(--radius-2xl);
+  box-shadow:
+    0 0 0 1px var(--hairline),
+    inset 0 1px 0 var(--hi);
+}
+
+@utility engraved {
+  box-shadow: var(--engraved);
+}
+
+@utility well {
+  background: var(--color-muted);
+  box-shadow:
+    inset 0 1px 2px oklch(0 0 0 / 0.08),
+    inset 0 0 0 1px var(--hairline);
+}
+
+/* Liquid glass — Apple / Lovable style. Standard property only; build adds prefixes. */
+@utility glass {
+  background: linear-gradient(180deg, var(--glass-top) 0%, var(--glass-bottom) 100%);
+  backdrop-filter: blur(22px) saturate(170%);
+  box-shadow:
+    0 0 0 1px var(--glass-edge),
+    0 0 0 1.5px var(--hairline),
+    inset 0 1px 0 var(--hi),
+    inset 0 -8px 16px -12px oklch(0.49 0.17 262 / 0.12),
+    0 12px 32px -14px oklch(0.23 0.03 265 / 0.22);
+}
+
+@utility glass-band {
+  background: oklch(1 0 0 / 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 0 0 1px oklch(1 0 0 / 0.14),
+    inset 0 1px 0 oklch(1 0 0 / 0.16);
+}
+
+@utility bg-band {
+  background: var(--gradient-band);
+  box-shadow:
+    inset 0 -1px 0 var(--band-edge),
+    inset 0 1px 0 oklch(1 0 0 / 0.12);
+}
+
+@utility bg-aurora {
+  background: var(--gradient-aurora);
+}
+
+@utility bg-ink-gradient {
+  background: var(--gradient-ink);
+}
+
+@utility bg-primary-gradient {
+  background: var(--gradient-primary);
+}
+
+@utility hairline-x {
+  & > * + * {
+    border-left: 1px solid var(--color-border);
+  }
+}
+
+@utility text-balance-safe {
+  text-wrap: balance;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+@utility dotted-grid {
+  background-image: radial-gradient(var(--hairline) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@utility shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-muted-foreground) 0%,
+    var(--color-foreground) 50%,
+    var(--color-muted-foreground) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 2.4s linear infinite;
+}
+
+/* Landing hero entrance: pure CSS so it plays from the server-rendered HTML, before hydration. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes word-up {
+  from {
+    opacity: 0;
+    transform: translateY(105%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@utility hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility word-up {
+  animation: word-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Section entrance used by <Reveal>: CSS so it plays before hydration. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@utility reveal-in {
+  animation: reveal-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Floating menus / popovers: soft lift + de-blur in, quick settle out. */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--pop-y, -6px)) scale(0.965);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes pop-out {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(var(--pop-y, -6px)) scale(0.975);
+    filter: blur(2px);
+  }
+}
+@utility pop-motion {
+  transform-origin: var(
+    --radix-popover-content-transform-origin,
+    var(--radix-dropdown-menu-content-transform-origin, var(--radix-select-content-transform-origin, top))
+  );
+  will-change: transform, opacity;
+  &[data-side="top"] {
+    --pop-y: 6px;
+  }
+  &[data-side="left"],
+  &[data-side="right"] {
+    --pop-y: 0px;
+  }
+  &[data-state="open"] {
+    animation: pop-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  &[data-state="closed"] {
+    animation: pop-out 150ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+}
+
+/* Centered modals: rise + de-blur. Uses `transform` only, so translate-x/y centering stays intact. */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes modal-out {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+    filter: blur(4px);
+  }
+}
+@keyframes veil-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes veil-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@utility modal-motion {
+  &[data-state="open"] {
+    animation: modal-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  &[data-state="closed"] {
+    animation: modal-out 180ms cubic-bezier(0.4, 0, 1, 1) both;
+  }
+}
+@utility veil-motion {
+  &[data-state="open"] {
+    animation: veil-in 260ms ease-out both;
+  }
+  &[data-state="closed"] {
+    animation: veil-out 180ms ease-in both;
+  }
+}
+
+/* Frosted-but-solid glass: shows only a blur of what's behind, never readable content. */
+@utility glass-solid {
+  background: linear-gradient(180deg, var(--glass-solid-top) 0%, var(--glass-solid-bottom) 100%);
+  backdrop-filter: blur(28px) saturate(160%);
+  box-shadow:
+    0 0 0 1px var(--hairline),
+    inset 0 1px 0 var(--hi),
+    0 18px 40px -18px oklch(0.23 0.03 265 / 0.28);
+}
+
+/* Ava card: thin indeterminate progress line while Ava works. */
+@keyframes ava-card-progress {
+  0% {
+    left: -35%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+.ava-card-progress {
+  animation: ava-card-progress 1.1s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+/* ---------- Theme switch ---------- */
+/* Circular reveal (View Transitions): the new theme grows from the toggle. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+/* Fallback when View Transitions are unavailable: a short colour cross-fade. */
+.theme-fade,
+.theme-fade *,
+.theme-fade *::before,
+.theme-fade *::after {
+  transition:
+    background-color 360ms ease,
+    border-color 360ms ease,
+    color 360ms ease,
+    fill 360ms ease,
+    box-shadow 360ms ease !important;
+}
+/* Sun ↔ moon swap inside the toggle. */
+.theme-icon {
+  transition:
+    transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease,
+    filter 320ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Toasts (Sonner, unstyled + Poach skin) ---------- */
+.poach-toast {
+  overflow: hidden;
+  box-shadow: var(--float), inset 0 1px 0 var(--hi);
+}
+.poach-toast[data-type="default"]::before {
+  content: "";
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at center, var(--color-primary) 0 3.5px, transparent 4px),
+    var(--color-primary-soft);
+}
+/* Time-left hairline; pauses while the stack is hovered (Sonner pauses too). */
+.poach-toast:not([data-type="loading"])::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-primary);
+  opacity: 0.18;
+  transform-origin: left;
+  animation: toast-life 3.6s linear forwards;
+}
+[data-sonner-toaster]:hover .poach-toast::after {
+  animation-play-state: paused;
+}
+@keyframes toast-life {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* Ava writing: each new word comes into focus, as if through a lens. */
+@keyframes ava-word-in {
+  0% {
+    opacity: 0;
+    filter: blur(7px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+.ava-word {
+  animation: ava-word-in 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ava-word {
+    animation: none;
+  }
+}
